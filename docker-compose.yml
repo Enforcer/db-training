@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+  py:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+  db:
+    build:
+      context: .
+      dockerfile: DbDockerfile
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: pass
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres
+      PGADMIN_DEFAULT_PASSWORD: pass
+

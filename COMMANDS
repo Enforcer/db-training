@@ -1,0 +1,2 @@
+docker exec -it db-training_db_1 psql -U postgres
+docker run --rm -it --network db-training_default db-training_py python -i bootstrap.py
